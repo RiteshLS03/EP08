@@ -1,0 +1,14 @@
+.card-data {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+} 
+
+.card-data > img {
+    width: 190px;
+}
+
+.cardinfo {
+    width: 190px;
+
+}
