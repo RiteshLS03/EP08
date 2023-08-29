@@ -4,7 +4,7 @@ import { restaurantList } from "../config";
 import { logo, vector } from "../../Images/index";
 import "../Body/Body.css";
 import "../Body/Header.css";
-// import {CardData} from "../RestaurantCard/RestaurantCard";
+import ShimarUI from "../ShimmarUI/ShimarUI";
 
 function filterData(searchText, cardDataList) {
   const filterData = cardDataList.filter((restaurant) =>
@@ -15,22 +15,23 @@ function filterData(searchText, cardDataList) {
 
 function Body() {
   const [searchText, setSearchText] = useState(""); //useState is a function that return an array. First Element is state varible and second element is function that how we want to change the state
-  const [restaurants, setRestaurants] = useState(restaurantList);
+  const [restaurants, setRestaurants] = useState([]);
+  console.log(restaurants);
 
-  useEffect((restaurants) => {
-    getRestaurants();
-  }, [restaurants]);
+  useEffect(()=>{
+    getResturants();
+  },[])
 
-  async function getRestaurants() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?&lat=19.8644542&lng=75.3557927&page_type=DESKTOP_WEB_LISTING"
-    );
+  async function  getResturants(){
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?&lat=19.8644542&lng=75.3557927")
     const json = await data.json();
-    setRestaurants(json)
-    console.log(json.data.cards[5].card.card.gridElements.infoWithStyle.restaurants);
-  }
+    console.log(json);
+    setRestaurants(json.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+  }    
 
-  return (
+  
+
+  return (restaurants.length === 0) ? <ShimarUI/> : (
     <>
       {/* LOGO */}
       <div className="header">
@@ -70,7 +71,7 @@ function Body() {
       {/* CARDS */}
       <div className="body-rest">
         {restaurants?.map((restaurant) => {
-          return   <RestaurantCard restaurant={...restaurant} key={restaurant.info.id}/> 
+          return   <RestaurantCard restaurant={...restaurant} key={restaurant?.info?.id} /*key={restaurant.data.data.id}*/ /> 
         })}
       </div>
     </>
