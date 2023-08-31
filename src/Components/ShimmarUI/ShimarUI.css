@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    justify-content: space-between ;
+    flex-wrap: wrap;
+}
+
+.emptyCard{
+    border: 1px solid black;
+    height: 400px;
+    width: 250px;
+    margin: 2rem;
+}
+

@@ -1,9 +1,56 @@
 import React from "react";
+import "./ShimarUI.css";
 
 const ShimarUI = () => {
   return (
     <>
-      <h1>Shimmar UI is Loading...</h1>
+      <div className="container">
+        <div className="emptyCard">
+          <div className="image"></div>
+          <div className="description"></div>
+          <div className="price"></div>
+        </div>
+        <div className="emptyCard">
+          <div className="image"></div>
+          <div className="description"></div>
+          <div className="price"></div>
+        </div>
+        <div className="emptyCard">
+          <div className="image"></div>
+          <div className="description"></div>
+          <div className="price"></div>
+        </div>
+        <div className="emptyCard">
+          <div className="image"></div>
+          <div className="description"></div>
+          <div className="price"></div>
+        </div>
+        <div className="emptyCard">
+          <div className="image"></div>
+          <div className="description"></div>
+          <div className="price"></div>
+        </div>
+        <div className="emptyCard">
+          <div className="image"></div>
+          <div className="description"></div>
+          <div className="price"></div>
+        </div>
+        <div className="emptyCard">
+          <div className="image"></div>
+          <div className="description"></div>
+          <div className="price"></div>
+        </div>
+        <div className="emptyCard">
+          <div className="image"></div>
+          <div className="description"></div>
+          <div className="price"></div>
+        </div>
+        <div className="emptyCard">
+          <div className="image"></div>
+          <div className="description"></div>
+          <div className="price"></div>
+        </div>
+      </div>
     </>
   );
 };
