@@ -30,9 +30,7 @@ function Body() {
   const [searchText, setSearchText] = useState(""); //useState is a function that return an array. First Element is state varible and second element is function that how we want to change the state
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   console.log(filteredRestaurants);
-
-
-  // NoFound(filteredRestaurants , searchText)
+  const [isLoggedIn,setIsLoggedIn] = useState("true");
 
   useEffect(()=>{
     getResturants();
@@ -46,6 +44,9 @@ function Body() {
     setFilteredRestaurants(json.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
 
   }    
+
+  
+
 
   // avoid components to break
   if (!allRestaurants) return null;
@@ -86,6 +87,11 @@ function Body() {
               <img src={vector} alt="cart" />
             </a>
           </ul>
+          <ul>{
+            isLoggedIn ? 
+            <button onClick={()=>setIsLoggedIn(false)}>Logout</button> 
+            : <button onClick={()=>setIsLoggedIn(true)}>Login</button> 
+            }</ul>    
         </li>
       </div>
       
