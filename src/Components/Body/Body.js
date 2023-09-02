@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { RestaurantCard } from "../Index";
-// import { restaurantList } from "../config"; Downloaded LIST OF Restaurants
 import { logo, vector , Homepage } from "../../Images/index"; /* Images for UI */
 import "../Body/Body.css";
 import "../Body/Header.css";
