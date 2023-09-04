@@ -102,7 +102,9 @@ function Body() {
         {filteredRestaurants?.map((restaurant) => {
           return   <RestaurantCard restaurant={...restaurant} key={restaurant?.info?.id} /*key={restaurant.data.data.id}*/ /> 
         })}
-      </div>}
+      </div>} {/*don't know what to do*/}
+
+      
   </> );
 }
 
