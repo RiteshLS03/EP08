@@ -4,6 +4,7 @@ import { logo, vector , Homepage } from "../../Images/index"; /* Images for UI *
 import "../Body/Body.css";
 import "../Body/Header.css";
 import ShimarUI from "../ShimmarUI/ShimarUI";
+import { SwiggyAPI_URL } from "../config.js";
 
 
 function filterData(searchText, allRestaurants) {
@@ -13,16 +14,6 @@ function filterData(searchText, allRestaurants) {
   return filterData;
 }
 
-
-
-// function NoFound(filteredRestaurants , searchText , allRestaurants){
-
-//  
-//   let filteredRestaurantsLentgh = filteredRestaurants[filteredRestaurants.length]
-//   if(filteredRestaurantsLentgh === 0){
-//     return(<h1>No Results Found for {searchText}</h1>)
-//   }
-// }
 
 function Body() {
   const [allRestaurants, setAllRestaurants] = useState([])
@@ -36,19 +27,36 @@ function Body() {
   },[])
 
   async function  getResturants(){
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?&lat=19.8644542&lng=75.3557927")
-    const json = await data.json();
-    console.log(json);
-    setAllRestaurants(json.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-    setFilteredRestaurants(json.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+
+    try {
+      const response = await fetch(SwiggyAPI_URL);
+      const json = await response.json();
+
+      async function checkJsonData(jsondata){
+        for(i=0;i < jsondata?.data?.cards.length; i++){
+
+          let checkData = json?.data?.cards[i]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+          if(checkData !== undefined){
+            return checkData;
+          }
+        }
+      }
+
+      const resData = await checkJsonData(json);
+      setAllRestaurants(resData);
+      setFilteredRestaurants(resData);
+
+    } catch (error) {
+      console.log(error)
+    }
+    // const data = await fetch(SwiggyAPI_URL)
+    // console.log(data);
+    // const json = await data.json();
+    // console.log(json);
+    // setAllRestaurants(json.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    // setFilteredRestaurants(json.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
 
   }    
-
-  
-
-
-  // avoid components to break
-  if (!allRestaurants) return null;
 
   return (
     <>
@@ -93,19 +101,33 @@ function Body() {
             }</ul>    
         </li>
       </div>
-      
-      
-           {
-          
-     (allRestaurants.length === 0) ? <ShimarUI/> : 
-     <div className="body-rest">
-        {filteredRestaurants?.map((restaurant) => {
-          return   <RestaurantCard restaurant={...restaurant} key={restaurant?.info?.id} /*key={restaurant.data.data.id}*/ /> 
-        })}
-      </div>} {/*don't know what to do*/}
 
+      { 
+      
+      (allRestaurants.length === 0) ? <ShimarUI/> : 
+ 
+      <div className="body-rest">
+         {filteredRestaurants?.map((restaurant) => {
+           return   <RestaurantCard restaurant={...restaurant} key={restaurant?.info?.id} /*key={restaurant.data.data.id}*/ /> 
+         })}
+       </div> 
+       }
       
   </> );
 }
+
+// export function InnerBody(){
+//   return(
+//       (allRestaurants.length === 0) ? <ShimarUI/> : 
+ 
+//       <div className="body-rest">
+//          {filteredRestaurants?.map((restaurant) => {
+//            return   <RestaurantCard restaurant={...restaurant} key={restaurant?.info?.id} /*key={restaurant.data.data.id}*/ /> 
+//          })}
+//        </div> )
+//        if (!allRestaurants) return null;
+// }
+
+
 
 export default Body;

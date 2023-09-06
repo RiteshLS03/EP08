@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Footer, Body } from "./src/Components/Index";
+import { Footer, Body, InnerBody } from "./src/Components/Index";
 // import { createBrowserRouter } from "react-router-dom"; // First , Need to push to the repo
 
 function App() {
@@ -8,6 +8,7 @@ function App() {
     <>
       {/* <Header /> */}
       <Body />
+      {/* <InnerBody /> */}
       <Footer />
     </>
   );

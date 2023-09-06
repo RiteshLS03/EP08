@@ -4,8 +4,8 @@ import "./ShimarUI.css";
 const ShimarUI = () => {
   return (
     <>
-      {Array(10)
-        .fill()
+      {Array(20)
+        .fill("")
         .map((e) => (
           <div className="container">
             <div className="emptyCard">

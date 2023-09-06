@@ -1,4 +1,5 @@
 export const IMG_CDN_LINK = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
+export const SwiggyAPI_URL = "https://www.swiggy.com/dapi/restaurants/list/v5?&lat=19.8644542&lng=75.3557927";
 
 export const restaurantList = []
 //  [
