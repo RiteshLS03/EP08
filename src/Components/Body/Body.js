@@ -49,13 +49,6 @@ function Body() {
     } catch (error) {
       console.log(error)
     }
-    // const data = await fetch(SwiggyAPI_URL)
-    // console.log(data);
-    // const json = await data.json();
-    // console.log(json);
-    // setAllRestaurants(json.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-    // setFilteredRestaurants(json.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-
   }    
 
   return (
@@ -74,7 +67,7 @@ function Body() {
               setSearchText(e.target.value);
             }}
           />
-          <button
+          <button 
             onClick={() => {
               // need to filter the data
               const data = filterData(searchText, allRestaurants);

@@ -29,6 +29,10 @@
   height: 21px;
 }
 
+.nav-items > ul >button {
+  font-family: var(--font-family);
+}
+
 #searchbar {
   padding: 8px;
   margin: 1rem;
